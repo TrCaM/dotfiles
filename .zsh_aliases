@@ -1,0 +1,117 @@
+# Task Warrior
+alias t='clear & task list'
+alias td='task end.after:today completed'
+alias ti='clear & task tags.none: list & task end.after:today completed & sleep infinity'
+alias ts='clear & task list +sub'
+alias tsi='clear & task list +sub & sleep infinity'
+alias tsync='tw_gcal_sync -t sync -c taskWarrior'
+alias tb='clear & task +tbl list'
+alias tba='task +tbl add'
+alias d='task done'
+alias s="task start"
+alias stop="task stop"
+alias due="task due.any:"
+alias a="task active"
+
+# Courses
+alias 4001="task project:4001"
+alias 4004="task project:4004~"
+alias 4009="task project:4009"
+alias 2605="task project:2605"
+alias econ="task project:econ"
+alias phys="task project:phys"
+alias ms="task +microsoft"
+
+#clear
+alias cl='clear'
+
+#nvim
+alias vim='nvim'
+
+#tmux
+alias muxdf='tmux attach -t default'
+
+# Range quit at a directory
+alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
+#bookmark and jump
+alias j='jump'
+alias b='bookmark'
+alias dm='deletemark'
+
+#Alias for folder
+alias 3004='cd /home/gon/Desktop/FAll\ 2018/COMP\ 3004/'
+
+#Alias for pacman
+alias pacins='sudo pacman -S'
+alias update='sudo pacman -Syu'
+alias yayins='yay -S'
+
+# Alias for pip
+alias pipins='pip install --user'
+
+# Aliad for cp
+alias cp='cpv'
+
+# =============================================================================
+#                                   Aliases
+# =============================================================================
+
+# In the definitions below, you will see use of function definitions instead of
+# aliases for some cases. We use this method to avoid expansion of the alias in
+# combination with the globalias plugin.
+
+# Directory coloring
+if [[ $OSTYPE = (darwin|freebsd)* ]]; then
+	export CLICOLOR="YES" # Equivalent to passing -G to ls.
+	export LSCOLORS="exgxdHdHcxaHaHhBhDeaec"
+
+	[ -d "/opt/local/bin" ] && export PATH="/opt/local/bin:$PATH"
+
+	# Prefer GNU version, since it respects dircolors.
+	if (( $+commands[gls] )); then
+		alias ls='() { $(whence -p gls) -Ctr --file-type --color=auto $@ }'
+	else
+		alias ls='() { $(whence -p ls) -CFtr $@ }'
+	fi
+else
+	alias ls='() { $(whence -p ls) -Ctr --file-type --color=auto $@ }'
+fi
+
+# Set editor preference to nvim if available.
+#if (( $+commands[nvim] )); then
+	#alias vim='() { $(whence -p nvim) $@ }'
+#else
+	#alias vim='() { $(whence -p vim) $@ }'
+#fi
+
+# Generic command adaptations
+alias grep='() { $(whence -p grep) --color=auto $@ }'
+alias egrep='() { $(whence -p egrep) --color=auto $@ }'
+
+# Custom helper aliases
+alias ccat='highlight -O ansi'
+alias rm='rm -v'
+
+# Directory management
+alias la='ls -a'
+alias ll='ls -l'
+alias lal='ls -al'
+alias di='dirs -v'
+alias 1='pu'
+alias 2='pu -2'
+alias 3='pu -3'
+alias 4='pu -4'
+alias 5='pu -5'
+alias 6='pu -6'
+alias 7='pu -7'
+alias 8='pu -8'
+alias 9='pu -9'
+alias pu='() { pushd $1 &> /dev/null; dirs -v; }'
+alias po='() { popd &> /dev/null; dirs -v; }'
+
+
+# kitty aliases
+alias icat="kitty +kitten icat"
+alias kit="kitty"
+alias neofetch="neofetch | lolcat"
