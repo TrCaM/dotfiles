@@ -2,11 +2,18 @@ syntax on
 filetype plugin on
 
 call plug#begin('~/.vim/plugged')
+  "Ipython integration
+  Plug 'bfredl/nvim-ipy'
+  "Plug 'szymonmaszke/vimpyter'
+  Plug 'goerz/jupytext.vim'
+
   "Vim wiki and more
   Plug 'vimwiki/vimwiki'
   Plug 'mattn/calendar-vim'
   Plug 'tpope/vim-speeddating'
   Plug 'chrisbra/NrrwRgn'
+  Plug 'tbabej/taskwiki'
+  Plug 'powerman/vim-plugin-AnsiEsc'
 
   "Copy paste
   Plug 'christoomey/vim-system-copy'
@@ -27,6 +34,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'valloric/youcompleteme'
   endif
 
+  "Typescript
+  Plug 'leafgarland/typescript-vim'
+  Plug 'pangloss/vim-javascript'
+
   "Markdown"
   Plug 'lervag/vimtex'
   Plug 'donRaphaco/neotex', { 'for': 'tex' }
@@ -42,6 +53,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
 
   "Coding utils
+  Plug 'jiangmiao/auto-pairs'
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tommcdo/vim-exchange'
@@ -64,11 +76,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim', { 'for': 'html' }
 
   " Syntax highlight"
-  Plug 'sheerun/vim-polyglot'
+  "Plug 'sheerun/vim-polyglot'
+  Plug 'vim-python/python-syntax'
 
   " markdown syntax highlight, theme, icons
   Plug 'ryanoasis/vim-devicons'
-  Plug 'xolox/vim-colorscheme-switcher'
+  "Plug 'xolox/vim-colorscheme-switcher'
   Plug 'romainl/flattened'
   Plug 'morhetz/gruvbox'
   Plug 'joshdick/onedark.vim'
@@ -117,9 +130,11 @@ set omnifunc=syntaxcomplete#Complete
 let g:pymode_python = 'python3'
 let g:pymode_syntax_space_errors = 0
 
+let g:python_highlight_all = 1
+
 let g:python3_host_prog = expand('~/anaconda3/bin/python')
 
-"autocmd FileType python setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal shiftwidth=2 tabstop=2
 
 " Quickly add empty lines
 nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
@@ -140,25 +155,12 @@ autocmd filetype vue LanguageClientStart
 
 " the suddennly popup of diagnostics sign is kind of annoying
 let g:LanguageClient_diagnosticsSignsMax = 0
-let g:airline_theme='papercolor'
-"let g:airline_theme='gruvbox'
 " Reload file on saving autocmd BufWritePost ~/.Xdefaults call system('xrdb ~/.Xdefaults')
 " Don't lose selection when shifting sidewards xnoremap <  <gv xnoremap >  >gv "
 "" for debugging LanguageClient-neovim set noshowmode
 " inoremap <silent> <c-q> <esc>:<c-u>q!<cr>
 " let g:LanguageClient_loggingFile = '/tmp/lc.log'
 " let g:LanguageClient_loggingLevel = 'DEBUG'
-
-
-" air-line
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-nnoremap <m-a> :AirlineToggle<Cr>
 
 " -------General mapping---------------"
 
@@ -289,11 +291,11 @@ let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
                         \ 'links': { 'external': { 'enable': 1 } },
                         \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
                         \ 'fold': { 'enable': 1 } }
-let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
+let g:polyglot_disabled = ['markdown', 'typescript'] " for vim-polyglot users, it loads Plasticboy's markdown
                                        " plugin which unfortunately interferes with mkdx list indentation.
 
 nmap <Plug> <Plug>(mkdx-tableize)
-vmap <buffer><silent> <localleader>tb <Plug>(mkdx-tableize)
+vmap <buffer><silent> \c <Plug>(mkdx-tableize)
 
 "Lime light
 let g:limelight_conceal_ctermfg = 'gray'
@@ -316,6 +318,18 @@ set background=dark
 "colorscheme gruvbox
 "colorscheme onehalfdark
 colorscheme PaperColor
+let g:airline_theme='papercolor'
+"let g:airline_theme='gruvbox'
+
+" air-line
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+nnoremap <m-a> :AirlineToggle<Cr>
 
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
@@ -326,13 +340,16 @@ highlight Normal ctermbg=NONE
 highlight nonText ctermbg=none
 set number
 set relativenumber
+
 set tabstop=2 shiftwidth=2 expandtab
-set cursorline
+"set cursorline
 set ignorecase
 set smartcase
 set ruler
 set scrolloff=3
 set ai
+"set autoindent
+"set smartindent
 
 " Paper color theme options
 let g:PaperColor_Theme_Options = {
@@ -439,13 +456,16 @@ if has("nvim")
   augroup end
 
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  xmap <leader>a  <Plug>(coc-codeaction-selected)
-  nmap <leader>a  <Plug>(coc-codeaction-selected)
+  function! s:cocActionsOpenFromSelected(type) abort
+    execute 'CocCommand actions.open ' . a:type
+  endfunction
+  xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+  nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
   " Remap for do codeAction of current line
   nmap <leader>ac  <Plug>(coc-codeaction)
   " Fix autofix problem of current line
-  nmap <leader>qf  <Plug>(coc-fix-current)
+  nmap <localleader>f  <Plug>(coc-fix-current)
 
   " Create mappings for function text object, requires document symbols feature of languageserver.
   xmap if <Plug>(coc-funcobj-i)
@@ -559,8 +579,9 @@ set undodir=~/.vim/undo
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
 nnoremap <silent> <leader>/ :execute 'Rg ' . input('Rg/')<CR>
-nnoremap <silent> <m-p> :FZF<CR>
-nnoremap <silent> <localleader>w :FZF ~/vimwiki<CR>
+"nnoremap <silent> <F1> :FZF<CR>
+nnoremap <silent> <c-p> :FZF<CR>
+nnoremap <silent> <localleader>w :FZF ~/vimwiki/text<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>; :History:<CR>
@@ -611,8 +632,8 @@ onoremap ie :exec "normal! ggVG"<cr>
 onoremap iv :exec "normal! HVL"<cr>
 
 " Yoink
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap <m-[> <plug>(YoinkPostPasteSwapBack)
+nmap <m-]> <plug>(YoinkPostPasteSwapForward)
 
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
@@ -643,7 +664,6 @@ let g:tagbar_expand = 1
 " Vim wiki
 "let g:vimwiki_list = [{'path': '~/vimwiki/',
                       "\ 'syntax': 'markdown', 'ext': '.md'}]
-nnoremap <F3> :e<space>~/org/index.org<CR>
 
 let g:tagbar_type_vimwiki = {
           \   'ctagstype':'vimwiki'
@@ -673,9 +693,9 @@ let wiki.template_default = 'def_template'
 let wiki.template_ext = '.html'
 
 let g:vimwiki_list = [wiki]
-let g:vimwiki_listsyms = ' ○◐●✓'
 let g:vimwiki_table_mappings=0
 let g:vimwiki_hl_cb_checked=2
+let g:vimwiki_folding = 'expr'
 
 nnoremap <m-v> :Vimwiki
 
@@ -683,5 +703,27 @@ nnoremap <m-v> :Vimwiki
 "nnoremap gx :!feh <cfile> &<CR>
 let g:vimwiki_use_mouse=1
 let g:vimwiki_hl_headers=1
+
+" Javascript
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+let g:javascript_conceal_noarg_arrow_function = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+"Auto indent
+let g:AutoPairsShortcutToggle = '<m-p>'
+let g:AutoPairsShortcutBackInsert = '<c-b>'
+let g:AutoPairsFlyMode = 0
+
+"Jupytext.vim
+let g:jupytext_filetype_map = {'md': 'pandoc'}
 
 " End file"
