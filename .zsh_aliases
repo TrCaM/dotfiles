@@ -39,8 +39,6 @@ alias j='jump'
 alias b='bookmark'
 alias dm='deletemark'
 
-#Alias for folder
-alias 3004='cd /home/gon/Desktop/FAll\ 2018/COMP\ 3004/'
 
 #Alias for pacman
 alias pacins='sudo pacman -S'
