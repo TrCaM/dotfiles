@@ -1,0 +1,15 @@
+Host caot
+    Hostname caot.c.googlers.com
+    ForwardAgent yes
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+    ControlPersist 15h
+    LocalForward 8080 127.0.0.1:8080
+
+##### Misc configuration
+Match all
+  # Timeout failed connections after 120 secs
+  ServerAliveInterval 30
+  ServerAliveCountMax 4
+  ConnectTimeout 60
+  ConnectionAttempts 2
