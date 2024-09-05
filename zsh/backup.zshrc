@@ -42,7 +42,7 @@ zinit snippet OMZ::plugins/compleat
 zinit snippet OMZ::plugins/colored-man-pages
 zinit snippet OMZ::plugins/colorize
 zinit snippet OMZ::plugins/command-not-found
-zinit snippet OMZ::plugins/copydir
+# zinit snippet OMZ::plugins/copydir
 zinit snippet OMZ::plugins/copyfile
 zinit snippet OMZ::plugins/cp
 zinit snippet OMZ::plugins/dircycle
@@ -70,11 +70,19 @@ bindkey "^u" backward-kill-line
 # Source local customizations.
 [[ -f ~/.zsh_rclocal ]] && source ~/.zsh_rclocal
 
+[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
+
 # Source exports and aliases.
 [[ -f ~/.zsh_exports ]] && source ~/.zsh_exports
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
+source <(fzf --zsh)
+
+# Source nnn config so that we can CD on quit
+[[ -f ~/.nnn_config.zsh ]] && source ~/.nnn_config.zsh
+
+if [ -f /usr/share/nnn/quitcd/quitcd.bash_sh_zsh ]; then
+    source /usr/share/nnn/quitcd/quitcd.bash_sh_zsh
+fi
 
 # Google Stuff
 source /etc/bash_completion.d/hgd
@@ -387,3 +395,5 @@ export nvm_dir="$home/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # this loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source ~/.nvm/nvm.sh

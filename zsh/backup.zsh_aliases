@@ -70,9 +70,9 @@ alias ccat='highlight -O ansi'
 alias rm='rm -v'
 
 # Directory management
-alias ls='exa --header'
-alias la='exa --long --header --git -a'
-alias ll='exa --long --header --git'
+alias ls='eza --header'
+alias la='eza --long --header --git -a'
+alias ll='eza --long --header --git'
 alias lal='ls -al'
 alias di='dirs -v'
 alias 1='pu'

@@ -19,12 +19,14 @@ export VIMRC="$HOME/.vimrc"
 export ZSHRC="$HOME/.zshrc"
 export ANDROID_HOME=$HOME/Android/Sdk
 export JAVA_HOME=/Users/caot/Library/Java/JavaVirtualMachines/openjdk-16.0.1/Contents/Home
-export PYTHONPATH=$HOME/anaconda3
+# export PYTHONPATH=$HOME/anaconda3
 export WIKIPATH=$HOME/vimwiki/resources
 export EDITOR="nvim"
 export GOPATH=$HOME/go
+export NOTION_ACCESS_TOKEN="ZXw4TWDyb70S4ijvtbng4LLyQdTfvI211gBe5g7b0nI"
+export NOTES="/Users/caot/Library/CloudStorage/GoogleDrive-cmthscb@gmail.com/My Drive/DriveSyncFiles/notes"
 #export TMUX=$HOME/homebrew/bin/tmux
-export CLOUDSDK_PYTHON=$HOME/.pyenv/shims/python
+# export CLOUDSDK_PYTHON=$HOME/.pyenv/shims/python
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin:/home/gon/bin:/usr/lib/jvm/java-12-openjdk/bin:$HOME/.programs/cilktools-linux-004501/bin:/var/lib/snapd/snap/bin"
@@ -48,12 +50,16 @@ path+=$HOME/.yarn/bin
 path+=$HOME/.config/yarn/global/node_modules/.bin
 path+=$GOROOT/bin
 path+=$GOPATH/bin
+path+=/opt/homebrew/opt/python@3.12/libexec/bin
 export PATH
 
 # vim: ft=zsh
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
+
+# nnn config
+export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
