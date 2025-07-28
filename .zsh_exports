@@ -4,52 +4,49 @@
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border --inline-info --color=dark,bg+:235,hl+:10,pointer:5'
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--ansi --height 40% --reverse --border --inline-info'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color fg:188,hl:103,fg+:222,bg+:#202c3c,hl+:104
+--color info:183,prompt:110,spinner:107,pointer:167,marker:215
+'
+
+
+export EDITOR="nvim"
 
 export ENHANCD_FILTER="fzf:peco:percol"
-export ENHANCD_COMMAND='c'
 export VIMRC="$HOME/.vimrc"
 export ZSHRC="$HOME/.zshrc"
 export ANDROID_HOME=$HOME/Android/Sdk
-export JAVA_HOME=/usr/lib/jvm/java-10-openjdk
+export JAVA_HOME=$HOME/Library/Java/JavaVirtualMachines/openjdk-16.0.1/Contents/Home
 export PYTHONPATH=$HOME/anaconda3
-export WIKIPATH=$HOME/vimwiki/resources
-export GOOGLE_CLOUD_PROJECT=caot-ai-studio-sandbox-458302
+export GOPATH=$HOME/go
+export NOTES="/Users/caot/Library/CloudStorage/GoogleDrive-cmthscb@gmail.com/My Drive/DriveSyncFiles/notes"
+export ASDF_DATA_DIR=$HOME/.asdf
+export GOOGLE_CLOUD_PROJECT="caot-ai-studio-sandbox-458302"
 
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin:/home/gon/bin:/usr/lib/jvm/java-12-openjdk/bin:$HOME/.programs/cilktools-linux-004501/bin:/var/lib/snapd/snap/bin"
 # PATH variable
 path+=$HOME/.npm-global/bin
 path+=$HOME/.zplug/repos/zplug/zplug/bin
 path+=$HOME/.zplug/bin
-path+=/usr/local/bin
-path+=/usr/bin
-path+=/bin
 path+=/usr/local/games
-path+=/usr/games
 path+=$HOME/.local/bin
-path+=$HOME/.gem/ruby/2.6.0/bin
-path+=$HOME/.rvm/bin
+path+=/usr/games
 path+=$HOME/bin
+path+=$HOME/homebrew/bin
 path+=/usr/lib/jvm/java-13-openjdk/bin
-path+=$HOME/.programs/cilktools-linux-004501/bin
 path+=/var/lib/snapd/snap/bin
-path+=$HOME/development/flutter/bin
-#path+=$HOME/anaconda3/bin
-path+=$PATH:$ANDROID_HOME/emulator
-path+=$PATH:$ANDROID_HOME/tools
-path+=$PATH:$ANDROID_HOME/tools/bin
-path+=$PATH:$ANDROID_HOME/platform-tools
-
+path+=$HOME/.luarocks/bin
+path+=$HOME/.yarn/bin
+path+=$HOME/.config/yarn/global/node_modules/.bin
+path+=$GOROOT/bin
+path+=$GOPATH/bin
+path+=/opt/homebrew/opt/python@3.12/libexec/bin
+path+="${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 export PATH
 
 # vim: ft=zsh
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
