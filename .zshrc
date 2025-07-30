@@ -6,10 +6,6 @@
 #    - zgen
 #    - PowerLevel 10k
 #    - ZSH
-# TODO: Write script to install automatically install missing tools
-#   - Make + Stow
-#   - TMUX
-#   - Move the dotfiles to the correct places
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -35,6 +31,7 @@ zinit light-mode for \
     jocelynmallon/zshmarks
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit load agkozak/zsh-z
 
 ### End of Zinit's installer chunk
@@ -49,20 +46,7 @@ zinit snippet OMZ::plugins/dircycle
 zinit snippet OMZ::plugins/encode64
 zinit snippet OMZ::plugins/extract
 zinit snippet OMZ::plugins/history
-
-
-bindkey -v
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^f" forward-word
-bindkey "^b" backward-word
-bindkey "^k" kill-line
-bindkey "^d" delete-char
-bindkey "^y" accept-and-hold
-bindkey "^w" backward-kill-word
-bindkey "^u" backward-kill-line
+zinit ice lucid wait; zinit snippet OMZP::fzf
 
 # Source defined functions.
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
@@ -74,7 +58,7 @@ bindkey "^u" backward-kill-line
 [[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 [[ -f ~/.zsh_exports ]] && source ~/.zsh_exports
 
-source <(fzf --zsh)
+
 
 # Google Stuff
 source /etc/bash_completion.d/hgd
@@ -389,3 +373,5 @@ export nvm_dir="$home/.nvm"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 source ~/.nvm/nvm.sh
+
+eval "$(zoxide init zsh --cmd cd)"

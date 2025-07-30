@@ -4,7 +4,7 @@
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_COMMAND="fd --type file --color=always --hidden"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--ansi --height 40% --reverse --border --inline-info'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
