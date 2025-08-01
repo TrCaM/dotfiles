@@ -1,0 +1,31 @@
+theme = "Popping and Locking"
+auto-update = download
+macos-option-as-alt = right
+font-thicken = true
+adjust-cell-height=2%
+
+
+# keybind = global:super+t=toggle_quick_terminal
+keybind = global:super+\=toggle_quick_terminal
+
+background-opacity = 0.85
+background-blur = 30
+
+# custom-shader = /Users/caot/.config/ghostty/shaders/starfield-colors.glsl
+
+cursor-style = block
+shell-integration-features = no-cursor
+cursor-style-blink = false
+link-url = true
+window-inherit-working-directory = true
+window-inherit-font-size = true
+window-theme = system
+clipboard-trim-trailing-spaces = true
+mouse-hide-while-typing = true
+macos-titlebar-proxy-icon = hidden
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = FFFFFF
+macos-icon-screen-color = 000000
+macos-titlebar-style = hidden
+
