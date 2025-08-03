@@ -1,5 +1,6 @@
 # theme = "catppuccin-mocha"
 theme = "ayu"
+# theme = "Dracula"
 auto-update = download
 macos-option-as-alt = right
 font-thicken = true
@@ -7,8 +8,7 @@ adjust-cell-height=2%
 
 
 keybind = global:ctrl+\=toggle_quick_terminal
-
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur = 40
 
 # custom-shader = /Users/caot/.config/ghostty/shaders/starfield-colors.glsl
