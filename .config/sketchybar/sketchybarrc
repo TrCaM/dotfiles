@@ -52,7 +52,7 @@ sketchybar --default "${default[@]}"
 sketchybar --add item apple.logo left \
   --set apple.logo icon=$APPLE \
   icon.font="SF Pro:Black:16.0" \
-  icon.color=$ACCENT_SECONDARY \
+  icon.color=$WHITE \
   padding_right=12 \
   padding_left=4 \
   label.drawing=off \
