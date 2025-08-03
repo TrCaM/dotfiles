@@ -1,4 +1,5 @@
-theme = "Popping and Locking"
+# theme = "catppuccin-mocha"
+theme = "ayu"
 auto-update = download
 macos-option-as-alt = right
 font-thicken = true
