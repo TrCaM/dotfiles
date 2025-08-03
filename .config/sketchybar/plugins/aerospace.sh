@@ -17,12 +17,13 @@ source "$CONFIG_DIR/colors.sh"
 if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
   # Style for the active workspace
   sketchybar --set $NAME background.drawing=on \
-    icon.color=$WHITE
+    icon.color=$LABEL_COLOR \
+    background.color=$LIGHT_GREY
 elif [ "$1" = "$PREV_WORKSPACE" ]; then
   # Style for the last active workspace
   sketchybar --set $NAME background.drawing=on \
     background.color=$BACKGROUND_2 \
-    icon.color=$LABEL_COLOR
+    icon.color=$CYAN
 else
   # Style for all other inactive workspaces
   sketchybar --set $NAME background.drawing=off \
