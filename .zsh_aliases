@@ -1,18 +1,3 @@
-# Task Warrior
-alias t='clear & task list'
-alias td='task end.after:today completed'
-alias ti='clear & task tags.none: list & task end.after:today completed & sleep infinity'
-alias ts='clear & task list +sub'
-alias tsi='clear & task list +sub & sleep infinity'
-alias tsync='tw_gcal_sync -t sync -c taskWarrior'
-alias tb='clear & task +tbl list'
-alias tba='task +tbl add'
-alias d='task done'
-alias s="task start"
-alias stop="task stop"
-alias due="task due.any:"
-alias a="task active"
-
 #clear
 alias cl='clear'
 
@@ -22,9 +7,6 @@ alias v='nvim'
 
 #tmux
 alias muxdf='tmux attach -t default'
-
-# Range quit at a directory
-alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 #bookmark and jump
 alias j='jump'
@@ -70,22 +52,20 @@ alias ccat='highlight -O ansi'
 alias rm='rm -v'
 
 # Directory management
-alias ls='eza --header'
-alias la='eza --long --header --git -a'
-alias ll='eza --long --header --git'
-alias lal='ls -al'
-alias di='dirs -v'
-alias 1='pu'
-alias 2='pu -2'
-alias 3='pu -3'
-alias 4='pu -4'
-alias 5='pu -5'
-alias 6='pu -6'
-alias 7='pu -7'
-alias 8='pu -8'
-alias 9='pu -9'
-alias pu='() { pushd $1 &> /dev/null; dirs -v; }'
-alias po='() { popd &> /dev/null; dirs -v; }'
+alias ls="eza --no-filesize --long --color=always --icons=always --no-user"
+alias la="eza -a --git --header --no-filesize --long --color=always --icons=always --no-user"
+
+# Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+# Lazygit
+alias lg="lazygit"
 
 # From common aliases plugin
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file

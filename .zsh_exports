@@ -4,13 +4,16 @@
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export FZF_DEFAULT_COMMAND="fd --type file --color=always --hidden"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--ansi --height 40% --reverse --border --inline-info'
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color fg:188,hl:103,fg+:222,bg+:#202c3c,hl+:104
---color info:183,prompt:110,spinner:107,pointer:167,marker:215
-'
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Setup fzf previews
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | head -200'"
+
+# fzf preview for tmux
+export FZF_TMUX_OPTS=" -p90%,70% "
 
 
 export EDITOR="nvim"
