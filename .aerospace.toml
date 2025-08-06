@@ -117,6 +117,7 @@ alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-i = 'workspace I'
 alt-c = 'workspace C'
+alt-m = 'workspace M'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -125,6 +126,7 @@ alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-i = 'move-node-to-workspace I'
 alt-shift-c = 'move-node-to-workspace C'
+alt-shift-m = 'move-node-to-workspace M'
 
 alt-shift-f = 'fullscreen'
 
@@ -200,9 +202,18 @@ if.app-id = 'com.apple.ActivityMonitor'
 run = "layout floating"
 
 [[on-window-detected]]
-if.app-id = 'com.facebook.archon.developerD'
+if.app-id = 'com.facebook.archon.developerID'
+run = "layout floating"
+
+[[on-window-detected]]
+if.app-id = 'com.facebook.archon.developerID'
+run = "move-node-to-workspace I"
+
+# Google Chat
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
 run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
-run = "layout floating"
+run = "move-node-to-workspace M"
