@@ -10,7 +10,3 @@ Simply link ~/.tmux.conf with tmux/google.tmux.conf
 ln -s ~/tmux/google.tmux.conf ~/.tmux.conf
 
 ```
-
-```
-
-```

@@ -3,6 +3,8 @@ theme = "ayu"
 # theme = "Dracula"
 auto-update = download
 macos-option-as-alt = right
+keybind = alt+left=unbind
+keybind = alt+right=unbind
 font-thicken = true
 adjust-cell-height=2%
 
