@@ -11,8 +11,8 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroup("color_column_80"),
   pattern = { "gitcommit", "markdown" },
   callback = function()
-    -- vim.opt_local.colorcolumn = "80"
     vim.opt_local.textwidth = 80
+    vim.opt_local.colorcolumn = "80"
   end,
 })
 
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.textwidth = 80
     -- vim.diagnostic.config({ underline = false, virtual_text = false, signs = false }, 47)
     -- vim.diagnostic.config({ underline = false, virtual_text = false, signs = false }, 48)
-    vim.diagnostic.disable()
+    vim.diagnostic.enable(false)
   end,
 })
 

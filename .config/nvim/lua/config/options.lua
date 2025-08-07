@@ -5,3 +5,6 @@ local opt = vim.opt
 opt.wrap = true
 
 opt.clipboard = ""
+
+vim.g.maplocalleader = "\\"
+vim.g.vim_markdown_frontmatter = 1
