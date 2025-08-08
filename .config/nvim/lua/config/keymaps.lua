@@ -50,3 +50,15 @@ vim.api.nvim_set_keymap("v", "]<space>", "<cmd>m .+1<cr>==", { desc = "Move down
 -- vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>AutoCmpOn<cr>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<leader>A", "<cmd>AutoCmpOff<cr>", { noremap = true, silent = true })
 ------------------------------
+
+local wk = require("which-key")
+wk.add({
+  {
+    "<leader>p",
+    group = "+Paths",
+  },
+  { "<leader>pp", "<cmd>lua require('util.pathcopy').copy_full_path()<cr>", desc = "Copy Full Path" },
+  { "<leader>pr", "<cmd>lua require('util.pathcopy').copy_relative_path()<cr>", desc = "Copy Relative Path" },
+  { "<leader>pf", "<cmd>lua require('util.pathcopy').copy_filename()<cr>", desc = "Copy Filename" },
+  { "<leader>pg", "<cmd>lua require('util.pathcopy').copy_google3_tail()<cr>", desc = "Copy google3 Path" },
+})
