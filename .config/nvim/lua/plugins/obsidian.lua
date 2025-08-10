@@ -1,3 +1,5 @@
+local cathy_notes_path = vim.fn.expand("~")
+  .. "/Library/CloudStorage/GoogleDrive-cmthscb@gmail.com/My Drive/cathy-notes"
 return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
@@ -8,11 +10,14 @@ return {
     -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
     -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
     -- refer to `:h file-pattern` for more examples
-    "BufReadPre ~/Library/CloudStorage/GoogleDrive-cmthscb@gmail.com/My Drive/cathy-notes/*.md",
-    "BufNewFile ~/Library/CloudStorage/GoogleDrive-cmthscb@gmail.com/My Drive/cathy-notes/*.md",
+    "BufReadPre "
+      .. cathy_notes_path
+      .. "/*.md",
+    "BufNewFile " .. cathy_notes_path .. "/*.md",
   },
   keys = {
     { "<leader>o", name = "+Obsidian" },
+    { "<leader>oh", "<cmd>ObsidianOpen HOME<cr>", desc = "Open HOME.md" },
     { "<leader>oo", "<cmd>ObsidianToday<cr>", desc = "Open Today's note" },
     { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create new note" },
     { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch note" },
@@ -34,7 +39,7 @@ return {
     workspaces = {
       {
         name = "cathy",
-        path = "/Users/caot/Library/CloudStorage/GoogleDrive-cmthscb@gmail.com/My Drive/cathy-notes",
+        path = cathy_notes_path,
       },
     },
     -- see below for full list of options 👇
@@ -43,7 +48,7 @@ return {
     -- dir = "~/vaults/work",
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
-    notes_subdir = "notes",
+    -- notes_subdir = "Arch",
 
     -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
     -- levels defined by "vim.log.levels.*".
@@ -51,7 +56,7 @@ return {
 
     daily_notes = {
       -- Optional, if you keep daily notes in a separate directory.
-      folder = "notes/dailies",
+      folder = "Diary/days",
       -- Optional, if you want to change the date format for the ID of daily notes.
       date_format = "%Y-%m-%d",
       -- Optional, if you want to change the date format of the default alias of daily notes.
@@ -65,7 +70,7 @@ return {
     -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
     completion = {
       -- Set to false to disable completion.
-      nvim_cmp = true,
+      blink = true,
       -- Trigger completion at 2 chars.
       min_chars = 2,
     },
@@ -168,7 +173,7 @@ return {
 
     -- Optional, for templates (see below).
     templates = {
-      folder = "templates",
+      folder = "x/Templates",
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
       -- A map for custom variables, the key should be the variable and the value a function
@@ -204,7 +209,7 @@ return {
 
     picker = {
       -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
-      name = "telescope.nvim",
+      name = "fzf-lua",
       -- Optional, configure key mappings for the picker. These are the defaults.
       -- Not all pickers support all mappings.
       note_mappings = {
