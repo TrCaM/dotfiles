@@ -17,9 +17,9 @@ return {
   },
   keys = {
     { "<leader>o", name = "+Obsidian" },
-    { "<leader>oh", "<cmd>ObsidianOpen HOME<cr>", desc = "Open HOME.md" },
+    { "<leader>oh", "<cmd>edit " .. cathy_notes_path .. "/HOME.md<cr>", desc = "Open HOME.md" },
     { "<leader>oo", "<cmd>ObsidianToday<cr>", desc = "Open Today's note" },
-    { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create new note" },
+    { "<leader>on", "<cmd>ObsidianNewFromTemplate<cr>", desc = "Create new note" },
     { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch note" },
     { "<leader>ot", "<cmd>ObsidianTags<cr>", desc = "Search by tag" },
     { "<leader>oy", "<cmd>ObsidianYesterday<cr>", desc = "Yesterday's daily note" },
