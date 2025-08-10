@@ -28,6 +28,7 @@ return {
     { "<leader>oe", "<cmd>ObsidianExtractNote<cr>", desc = "Extract to a new linked note" },
     { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename current note with backlinks update" },
     { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste image from clipboard" },
+    { "<leader>ox", "<cmd>ObsidianExtractNote", desc = "Paste image from clipboard", mode = "v" },
   },
   dependencies = {
     -- Required.
