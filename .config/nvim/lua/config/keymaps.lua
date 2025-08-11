@@ -61,4 +61,51 @@ wk.add({
   { "<leader>pr", "<cmd>lua require('util.pathcopy').copy_relative_path()<cr>", desc = "Copy Relative Path" },
   { "<leader>pf", "<cmd>lua require('util.pathcopy').copy_filename()<cr>", desc = "Copy Filename" },
   { "<leader>pg", "<cmd>lua require('util.pathcopy').copy_google3_tail()<cr>", desc = "Copy google3 Path" },
+  {
+    "<localleader>s",
+    group = "+Session",
+  },
+  {
+    "<localleader>ss",
+    function()
+      local filename = vim.fn.input("Save session as: ", vim.fn.expand("~") .. "/.vimsessions/", "file")
+      if filename ~= "" then
+        vim.cmd("mksession! " .. vim.fn.fnameescape(filename))
+      end
+    end,
+    desc = "Save session",
+  },
+  {
+    "<localleader>sl",
+    function()
+      local sessions = vim.fn.glob(vim.fn.expand("~") .. "/.vimsessions/*.vim", true, true)
+      if vim.tbl_isempty(sessions) then
+        vim.notify("No sessions found.", vim.log.levels.WARN)
+        return
+      end
+
+      local items = {}
+      for _, session in ipairs(sessions) do
+        table.insert(items, vim.fn.fnamemodify(session, ":t"))
+      end
+
+      require("telescope.pickers").new({}, {
+        prompt_title = "Select a session to load",
+        finder = require("telescope.finders").new_table({
+          results = items,
+        }),
+        sorter = require("telescope.config").values.generic_sorter({}),
+        attach_mappings = function(prompt_bufnr, map)
+          map("i", "<cr>", function()
+            local selection = require("telescope.actions.state").get_selected_entry()
+            require("telescope.actions").close(prompt_bufnr)
+            local session_path = vim.fn.expand("~") .. "/.vimsessions/" .. selection[1]
+            vim.cmd("source " .. vim.fn.fnameescape(session_path))
+          end)
+          return true
+        end,
+      }):find()
+    end,
+    desc = "Load session",
+  },
 })
