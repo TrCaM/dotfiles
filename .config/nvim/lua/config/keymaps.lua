@@ -85,26 +85,46 @@ wk.add({
       end
 
       local items = {}
-      for _, session in ipairs(sessions) do
-        table.insert(items, vim.fn.fnamemodify(session, ":t"))
+      for _, session_path in ipairs(sessions) do
+        table.insert(items, {
+          text = vim.fn.fnamemodify(session_path, ":t"),
+          path = session_path,
+        })
       end
 
-      require("telescope.pickers").new({}, {
-        prompt_title = "Select a session to load",
-        finder = require("telescope.finders").new_table({
-          results = items,
-        }),
-        sorter = require("telescope.config").values.generic_sorter({}),
-        attach_mappings = function(prompt_bufnr, map)
-          map("i", "<cr>", function()
-            local selection = require("telescope.actions.state").get_selected_entry()
-            require("telescope.actions").close(prompt_bufnr)
-            local session_path = vim.fn.expand("~") .. "/.vimsessions/" .. selection[1]
-            vim.cmd("source " .. vim.fn.fnameescape(session_path))
-          end)
-          return true
+      require("snacks").picker.pick({
+        source = "sessions",
+        finder = function()
+          return items
         end,
-      }):find()
+        confirm = function(picker, item)
+          picker:close()
+          if item then
+            vim.cmd("source " .. vim.fn.fnameescape(item.path))
+          end
+        end,
+        format = function(item, _)
+          return { { item.text } }
+        end,
+        layout = {
+          preview = false,
+          layout = {
+            backdrop = {
+              blend = 40,
+            },
+            width = 0.3,
+            min_width = 80,
+            height = 0.2,
+            min_height = 10,
+            box = "vertical",
+            border = "rounded",
+            title = " Sessions ",
+            title_pos = "center",
+            { win = "list", border = "none" },
+            { win = "input", height = 1, border = "top" },
+          },
+        },
+      })
     end,
     desc = "Load session",
   },
