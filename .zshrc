@@ -47,6 +47,7 @@ zinit snippet OMZ::plugins/encode64
 zinit snippet OMZ::plugins/extract
 zinit snippet OMZ::plugins/history
 zinit ice lucid wait; zinit snippet OMZP::fzf
+zinit light Aloxaf/fzf-tab
 
 # Source defined functions.
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
