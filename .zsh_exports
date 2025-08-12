@@ -36,6 +36,7 @@ path+=$HOME/.zplug/bin
 path+=/usr/local/games
 path+=$HOME/.local/bin
 path+=/usr/games
+path+=/usr/local/bin
 path+=$HOME/bin
 path+=$HOME/homebrew/bin
 path+=/usr/lib/jvm/java-13-openjdk/bin
