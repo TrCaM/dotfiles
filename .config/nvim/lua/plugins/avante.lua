@@ -11,14 +11,14 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "gemini",
-    auto_suggestions_provider = "gemini",
+    provider = "claude",
+    auto_suggestions_provider = "claude",
     providers = {
-      gemini = {
-        model = "gemini-2.5-flash", -- or your desired model
-        -- model = "gemini-2.5-pro", -- or your desired model
-        -- Other Gemini options can be configured here
-      },
+      -- gemini = {
+      --   model = "gemini-2.5-flash", -- or your desired model
+      --   -- model = "gemini-2.5-pro", -- or your desired model
+      --   -- Other Gemini options can be configured here
+      -- },
       claude = {
         endpoint = "https://api.anthropic.com",
         model = "claude-sonnet-4-20250514",

@@ -13,7 +13,7 @@ adjust-cell-height=2%
 
 # keybind = global:ctrl+\=toggle_quick_terminal
 background-opacity = 0.90
-# background-blur = 10
+background-blur = 30
 
 # custom-shader = /Users/caot/.config/ghostty/shaders/starfield-colors.glsl
 

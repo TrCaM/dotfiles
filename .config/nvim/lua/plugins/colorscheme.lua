@@ -4,7 +4,16 @@ return {
   { "sainnhe/gruvbox-material" },
   { "catppuccin/nvim" },
   { "rose-pine/neovim" },
-  { "rebelot/kanagawa.nvim" },
+  {
+    "rebelot/kanagawa.nvim",
+    opts = {
+      transparent = true,
+      dimInactive = false,
+      colors = {
+        theme = { all = { ui = { bg_gutter = "none" } } },
+      },
+    },
+  },
   { "sainnhe/sonokai" },
   {
     "folke/tokyonight.nvim",
@@ -21,7 +30,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "kanagawa",
     },
   },
 }

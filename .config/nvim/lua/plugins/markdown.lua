@@ -6,17 +6,21 @@ return {
     preset = "obsidian",
     heading = {
       sign = false,
-      position = "inline",
+      position = "left",
       icons = {
-        "󰼏 ",
-        "󰎨 ",
-        "󰼑 ",
-        "󰎲  ",
+        "=== 󰼏   ",
+        "=== 󰎨   ",
+        "=== 󰼑   ",
+        "=== 󰎲   ",
       },
+      -- Turn on / off atx heading rendering.
+      atx = true,
+      -- Turn on / off setext heading rendering.
+      setext = true,
       width = "block",
-      min_width = 80,
-      left_pad = 2,
+      min_width = 0,
       -- right_pad = 4,
+      backgrounds = {},
     },
     checkbox = {
       unchecked = { icon = "◯ " },
