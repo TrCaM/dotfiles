@@ -22,7 +22,6 @@ vim.api.nvim_set_keymap("v", "]<space>", "<cmd>m .+1<cr>==", { desc = "Move down
 
 vim.api.nvim_set_keymap("t", "jj", [[<C-\><C-n>]], { silent = true, noremap = true })
 vim.api.nvim_set_keymap("i", "jj", "<ESC>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("v", "jj", "<ESC>", { silent = true, noremap = true })
 
 local wk = require("which-key")
 wk.add({

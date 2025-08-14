@@ -6,7 +6,7 @@ return {
     preset = "obsidian",
     heading = {
       sign = false,
-      position = "left",
+      -- position = "left",
       icons = {
         "=== 󰼏   ",
         "=== 󰎨   ",
@@ -20,7 +20,7 @@ return {
       width = "block",
       min_width = 0,
       -- right_pad = 4,
-      backgrounds = {},
+      -- backgrounds = {},
     },
     checkbox = {
       unchecked = { icon = "◯ " },
