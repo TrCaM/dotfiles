@@ -6,19 +6,17 @@ return {
     or "make",
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
-  ---@module 'avante'
-  ---@type avante.Config
   opts = {
     -- add any opts here
     -- for example
-    provider = "claude",
+    provider = "gemini",
     auto_suggestions_provider = "claude",
     providers = {
-      -- gemini = {
-      --   model = "gemini-2.5-flash", -- or your desired model
-      --   -- model = "gemini-2.5-pro", -- or your desired model
-      --   -- Other Gemini options can be configured here
-      -- },
+      gemini = {
+        -- model = "gemini-2.5-flash", -- or your desired model
+        model = "gemini-2.5-pro", -- or your desired model
+        -- Other Gemini options can be configured here
+      },
       claude = {
         endpoint = "https://api.anthropic.com",
         model = "claude-sonnet-4-20250514",
