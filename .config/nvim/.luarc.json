@@ -23,6 +23,7 @@
     "${path}/lua",
     "${path}/lua/plugins",
     "${path}/lua/config",
+    "/opt/homebrew/Cellar/neovim/0.11.3/share/nvim/runtime/lua",
     "~/.local/share/nvim/lazy/LuaSnip/lua",
     "/usr/local/share/nvim/runtime/lua"
   ],

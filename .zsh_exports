@@ -46,6 +46,7 @@ path+=$HOME/.yarn/bin
 path+=$HOME/.config/yarn/global/node_modules/.bin
 path+=$GOROOT/bin
 path+=$GOPATH/bin
+path+=$HOME/.vector/bin
 path+=/opt/homebrew/opt/python@3.12/libexec/bin
 path+="${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 export PATH
