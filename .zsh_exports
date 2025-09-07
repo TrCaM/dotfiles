@@ -39,6 +39,7 @@ path+=/usr/games
 path+=/usr/local/bin
 path+=$HOME/bin
 path+=$HOME/homebrew/bin
+path+=$HOME/.cargo/bin
 path+=/usr/lib/jvm/java-13-openjdk/bin
 path+=/var/lib/snapd/snap/bin
 path+=$HOME/.luarocks/bin

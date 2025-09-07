@@ -1,2 +1,7 @@
 ./kitty/kitty-themes
 ./kitty/kitty-themes-master.zip
+
+
+# Added by cargo
+
+/target
